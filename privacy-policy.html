@@ -58,6 +58,30 @@
     .nav-back { font-size: 0.9rem; color: var(--text-dim); }
     .nav-back:hover { color: var(--accent); text-decoration: none; }
 
+    /* ── Lang switcher (header) ── */
+    .lang-switcher {
+      display: flex;
+      gap: 0.35rem;
+    }
+    .lang-switcher button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: inherit;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .lang-switcher button.active,
+    .lang-switcher button:hover {
+      background: var(--accent);
+      color: #0a0a14;
+      font-weight: 700;
+      border-color: var(--accent);
+    }
+
     /* ── Hero ── */
     .hero {
       background: linear-gradient(160deg, var(--bg2) 0%, var(--bg) 60%);
@@ -182,7 +206,13 @@
 <header>
   <nav>
     <div class="nav-logo"><span>📋</span> AI Chat Exporter</div>
-    <a class="nav-back" href="index.html">← Back to Home</a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a class="nav-back" href="index.html" id="pp-back">← Back to Home</a>
+      <div class="lang-switcher">
+        <button id="pp-btn-en" class="active" onclick="ppSetLang('en')">🇬🇧 EN</button>
+        <button id="pp-btn-ja" onclick="ppSetLang('ja')">🇯🇵 JP</button>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -192,11 +222,11 @@
   <p class="updated">Last updated: 2026-03-17</p>
 </div>
 
-<!-- Language Toggle -->
+<!-- Language Toggle (content area) -->
 <div class="lang-toggle">
-  <button class="lang-btn active" onclick="showLang('en', this)">English</button>
-  <button class="lang-btn" onclick="showLang('ja', this)">日本語</button>
-  <button class="lang-btn" onclick="showLang('both', this)">Both / 両方</button>
+  <button class="lang-btn" id="pp-content-btn-en" onclick="ppSetLang('en')">English</button>
+  <button class="lang-btn" id="pp-content-btn-ja" onclick="ppSetLang('ja')">日本語</button>
+  <button class="lang-btn" id="pp-content-btn-both" onclick="ppSetLang('both')">Both / 両方</button>
 </div>
 
 <!-- Content -->
@@ -327,10 +357,7 @@
 </footer>
 
 <script>
-  function showLang(lang, btn) {
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
+  function ppApplyLang(lang) {
     const en = document.getElementById('section-en');
     const ja = document.getElementById('section-ja');
 
@@ -341,7 +368,33 @@
     } else {
       en.classList.add('visible'); ja.classList.add('visible');
     }
+
+    // header buttons
+    document.getElementById('pp-btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('pp-btn-ja').classList.toggle('active', lang === 'ja');
+
+    // content area buttons
+    document.getElementById('pp-content-btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('pp-content-btn-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('pp-content-btn-both').classList.toggle('active', lang === 'both');
+
+    // back link label
+    document.getElementById('pp-back').textContent = lang === 'ja' ? '← ホームに戻る' : '← Back to Home';
+
+    document.documentElement.lang = (lang === 'both') ? 'ja' : lang;
   }
+
+  function ppSetLang(lang) {
+    localStorage.setItem('ace-lang', lang === 'both' ? 'both' : lang);
+    ppApplyLang(lang);
+  }
+
+  // Init: localStorage → browser language → en
+  (function () {
+    const saved = localStorage.getItem('ace-lang');
+    const auto  = navigator.language?.startsWith('ja') ? 'ja' : 'en';
+    ppApplyLang(saved || auto);
+  })();
 </script>
 
 </body>

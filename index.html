@@ -55,9 +55,34 @@
       gap: 0.5rem;
     }
     .nav-logo span { font-size: 1.4rem; }
-    .nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.9rem; }
     .nav-links a { color: var(--text-dim); }
     .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── Lang switcher ── */
+    .lang-switcher {
+      display: flex;
+      gap: 0.35rem;
+      margin-left: 0.5rem;
+    }
+    .lang-switcher button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: inherit;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .lang-switcher button.active,
+    .lang-switcher button:hover {
+      background: var(--accent);
+      color: #0a0a14;
+      font-weight: 700;
+      border-color: var(--accent);
+    }
 
     /* ── Hero ── */
     .hero {
@@ -227,6 +252,7 @@
 
     @media (max-width: 600px) {
       .nav-links { display: none; }
+      .lang-switcher { display: flex; }
     }
   </style>
 </head>
@@ -237,9 +263,13 @@
   <nav>
     <div class="nav-logo"><span>📋</span> AI Chat Exporter</div>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#services">Services</a>
-      <a href="privacy-policy.html">Privacy</a>
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="privacy-policy.html" data-i18n="nav.privacy">Privacy</a>
+      <div class="lang-switcher">
+        <button id="btn-en" class="active" onclick="setLang('en')">🇬🇧 EN</button>
+        <button id="btn-ja" onclick="setLang('ja')">🇯🇵 JP</button>
+      </div>
     </div>
   </nav>
 </header>
@@ -247,18 +277,16 @@
 <!-- Hero -->
 <section class="hero">
   <span class="hero-icon">📋</span>
-  <h1>Export AI Chats<br><span class="highlight">in One Click</span></h1>
-  <p>A Chrome Extension that extracts conversations from 8 AI chat services and exports them as Markdown — instantly.</p>
-  <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener">
-    Add to Chrome — It's Free
-  </a>
-  <p class="hero-sub">Chrome Web Store &nbsp;·&nbsp; Manifest V3 &nbsp;·&nbsp; No account required</p>
+  <h1 data-i18n-html="hero.h1"></h1>
+  <p data-i18n="hero.sub"></p>
+  <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener" data-i18n="hero.cta"></a>
+  <p class="hero-sub" data-i18n="hero.sub2"></p>
 </section>
 
 <!-- Supported Services -->
 <section class="services" id="services">
-  <p class="section-label">Supported Services</p>
-  <h2 class="section-title">Works with 8 AI Chat Platforms</h2>
+  <p class="section-label" data-i18n="services.label"></p>
+  <h2 class="section-title" data-i18n="services.title"></h2>
   <div class="service-grid">
     <div class="service-card"><span class="icon">✨</span>Gemini</div>
     <div class="service-card"><span class="icon">🤖</span>ChatGPT</div>
@@ -274,38 +302,38 @@
 <!-- Features -->
 <section class="features" id="features">
   <div class="features-inner">
-    <p class="section-label">Features</p>
-    <h2 class="section-title">Everything You Need to Save Conversations</h2>
+    <p class="section-label" data-i18n="features.label"></p>
+    <h2 class="section-title" data-i18n="features.title"></h2>
     <div class="feature-grid">
       <div class="feature-card">
         <span class="f-icon">📋</span>
-        <h3>Copy as Markdown</h3>
-        <p>Copy the entire conversation to your clipboard in clean Markdown format with a single click.</p>
+        <h3 data-i18n="feat.copy.title"></h3>
+        <p data-i18n="feat.copy.desc"></p>
       </div>
       <div class="feature-card">
         <span class="f-icon">⬇️</span>
-        <h3>Download as .md File</h3>
-        <p>Save the conversation as a Markdown file directly to your local downloads folder.</p>
+        <h3 data-i18n="feat.dl.title"></h3>
+        <p data-i18n="feat.dl.desc"></p>
       </div>
       <div class="feature-card">
         <span class="f-icon">✂️</span>
-        <h3>Selection Copy</h3>
-        <p>Pick specific messages to copy — by free selection or per-message toggle.</p>
+        <h3 data-i18n="feat.sel.title"></h3>
+        <p data-i18n="feat.sel.desc"></p>
       </div>
       <div class="feature-card">
         <span class="f-icon">📄</span>
-        <h3>Save to Google Docs <span class="badge-pro">PRO</span></h3>
-        <p>Export directly to Google Docs and Google Drive with OAuth 2.0 — no extra setup needed.</p>
+        <h3 data-i18n-html="feat.gdocs.title"></h3>
+        <p data-i18n="feat.gdocs.desc"></p>
       </div>
       <div class="feature-card">
         <span class="f-icon">📝</span>
-        <h3>Save to Notion <span class="badge-pro">PRO</span></h3>
-        <p>Push conversations to your Notion workspace using your Integration Token.</p>
+        <h3 data-i18n-html="feat.notion.title"></h3>
+        <p data-i18n="feat.notion.desc"></p>
       </div>
       <div class="feature-card">
         <span class="f-icon">🌐</span>
-        <h3>English &amp; Japanese UI</h3>
-        <p>Fully localized interface in both English and Japanese — auto-detected from your Chrome locale.</p>
+        <h3 data-i18n="feat.i18n.title"></h3>
+        <p data-i18n="feat.i18n.desc"></p>
       </div>
     </div>
   </div>
@@ -313,54 +341,176 @@
 
 <!-- Highlights -->
 <section class="highlights">
-  <p class="section-label">Why AI Chat Exporter?</p>
-  <h2 class="section-title">Designed for Simplicity &amp; Privacy</h2>
+  <p class="section-label" data-i18n="why.label"></p>
+  <h2 class="section-title" data-i18n="why.title"></h2>
   <div class="highlight-list">
     <div class="highlight-item">
       <span class="h-icon">🔒</span>
-      <div class="h-text"><strong>100% Local Processing</strong>All chat content is processed entirely within your browser. Nothing is sent to any server.</div>
+      <div class="h-text"><strong data-i18n="why.local.title"></strong><span data-i18n="why.local.desc"></span></div>
     </div>
     <div class="highlight-item">
       <span class="h-icon">🖱️</span>
-      <div class="h-text"><strong>Floating Icon</strong>Draggable floating button — reposition anywhere on screen, expands in the right direction automatically.</div>
+      <div class="h-text"><strong data-i18n="why.fab.title"></strong><span data-i18n="why.fab.desc"></span></div>
     </div>
     <div class="highlight-item">
       <span class="h-icon">🌙</span>
-      <div class="h-text"><strong>Dark Mode Support</strong>Settings page and UI automatically adapt to dark and light themes.</div>
+      <div class="h-text"><strong data-i18n="why.dark.title"></strong><span data-i18n="why.dark.desc"></span></div>
     </div>
     <div class="highlight-item">
       <span class="h-icon">📂</span>
-      <div class="h-text"><strong>Custom Google Drive Folder</strong>Choose or create a destination folder in Google Drive for exported documents.</div>
+      <div class="h-text"><strong data-i18n="why.folder.title"></strong><span data-i18n="why.folder.desc"></span></div>
     </div>
     <div class="highlight-item">
       <span class="h-icon">⚡</span>
-      <div class="h-text"><strong>Zero Configuration</strong>Install and it just works — no sign-up, no account, no tracking.</div>
+      <div class="h-text"><strong data-i18n="why.zero.title"></strong><span data-i18n="why.zero.desc"></span></div>
     </div>
     <div class="highlight-item">
       <span class="h-icon">🔄</span>
-      <div class="h-text"><strong>Always Up-to-Date</strong>Regular updates to keep up with each service's DOM changes and new AI platforms.</div>
+      <div class="h-text"><strong data-i18n="why.upd.title"></strong><span data-i18n="why.upd.desc"></span></div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-  <h2>Start Exporting Your AI Chats Today</h2>
-  <p>Free to install. No sign-up required. Works instantly on all 8 supported platforms.</p>
-  <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener">
-    Add to Chrome
-  </a>
+  <h2 data-i18n="cta.title"></h2>
+  <p data-i18n="cta.sub"></p>
+  <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener" data-i18n="cta.btn"></a>
 </section>
 
 <!-- Footer -->
 <footer>
   <div class="footer-links">
     <a href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener">Chrome Web Store</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="mailto:korokiri0811@gmail.com">Contact</a>
+    <a href="privacy-policy.html" data-i18n="footer.privacy"></a>
+    <a href="mailto:korokiri0811@gmail.com" data-i18n="footer.contact"></a>
   </div>
   <p>&copy; 2026 AI Chat Exporter. All rights reserved.</p>
 </footer>
+
+<script>
+  const DICT = {
+    en: {
+      'nav.features':      'Features',
+      'nav.services':      'Services',
+      'nav.privacy':       'Privacy',
+      'hero.h1':           'Export AI Chats<br><span class="highlight">in One Click</span>',
+      'hero.sub':          'A Chrome Extension that extracts conversations from 8 AI chat services and exports them as Markdown — instantly.',
+      'hero.cta':          'Add to Chrome — It\'s Free',
+      'hero.sub2':         'Chrome Web Store\u00a0·\u00a0Manifest V3\u00a0·\u00a0No account required',
+      'services.label':    'Supported Services',
+      'services.title':    'Works with 8 AI Chat Platforms',
+      'features.label':    'Features',
+      'features.title':    'Everything You Need to Save Conversations',
+      'feat.copy.title':   'Copy as Markdown',
+      'feat.copy.desc':    'Copy the entire conversation to your clipboard in clean Markdown format with a single click.',
+      'feat.dl.title':     'Download as .md File',
+      'feat.dl.desc':      'Save the conversation as a Markdown file directly to your local downloads folder.',
+      'feat.sel.title':    'Selection Copy',
+      'feat.sel.desc':     'Pick specific messages to copy — by free selection or per-message toggle.',
+      'feat.gdocs.title':  'Save to Google Docs <span class="badge-pro">PRO</span>',
+      'feat.gdocs.desc':   'Export directly to Google Docs and Google Drive with OAuth 2.0 — no extra setup needed.',
+      'feat.notion.title': 'Save to Notion <span class="badge-pro">PRO</span>',
+      'feat.notion.desc':  'Push conversations to your Notion workspace using your Integration Token.',
+      'feat.i18n.title':   'English &amp; Japanese UI',
+      'feat.i18n.desc':    'Fully localized interface in both English and Japanese — auto-detected from your Chrome locale.',
+      'why.label':         'Why AI Chat Exporter?',
+      'why.title':         'Designed for Simplicity &amp; Privacy',
+      'why.local.title':   '100% Local Processing',
+      'why.local.desc':    'All chat content is processed entirely within your browser. Nothing is sent to any server.',
+      'why.fab.title':     'Floating Icon',
+      'why.fab.desc':      'Draggable floating button — reposition anywhere on screen, expands in the right direction automatically.',
+      'why.dark.title':    'Dark Mode Support',
+      'why.dark.desc':     'Settings page and UI automatically adapt to dark and light themes.',
+      'why.folder.title':  'Custom Google Drive Folder',
+      'why.folder.desc':   'Choose or create a destination folder in Google Drive for exported documents.',
+      'why.zero.title':    'Zero Configuration',
+      'why.zero.desc':     'Install and it just works — no sign-up, no account, no tracking.',
+      'why.upd.title':     'Always Up-to-Date',
+      'why.upd.desc':      "Regular updates to keep up with each service's DOM changes and new AI platforms.",
+      'cta.title':         'Start Exporting Your AI Chats Today',
+      'cta.sub':           'Free to install. No sign-up required. Works instantly on all 8 supported platforms.',
+      'cta.btn':           'Add to Chrome',
+      'footer.privacy':    'Privacy Policy',
+      'footer.contact':    'Contact',
+    },
+    ja: {
+      'nav.features':      '機能',
+      'nav.services':      '対応サービス',
+      'nav.privacy':       'プライバシー',
+      'hero.h1':           'AIチャットを<br><span class="highlight">ワンクリックでエクスポート</span>',
+      'hero.sub':          '8つのAIチャットサービスの会話をMarkdown形式で即座にエクスポートできるChrome拡張機能。',
+      'hero.cta':          'Chromeに追加 — 無料',
+      'hero.sub2':         'Chrome ウェブストア\u00a0·\u00a0Manifest V3\u00a0·\u00a0アカウント不要',
+      'services.label':    '対応サービス',
+      'services.title':    '8つのAIチャットプラットフォームに対応',
+      'features.label':    '機能',
+      'features.title':    '会話を保存するために必要な全て',
+      'feat.copy.title':   'Markdownとしてコピー',
+      'feat.copy.desc':    '会話全体をクリーンなMarkdown形式でクリップボードにワンクリックでコピー。',
+      'feat.dl.title':     '.mdファイルとしてダウンロード',
+      'feat.dl.desc':      '会話をMarkdownファイルとしてローカルのダウンロードフォルダに直接保存。',
+      'feat.sel.title':    '範囲選択コピー',
+      'feat.sel.desc':     'コピーしたいメッセージを選択 — フリー選択またはメッセージ単位での切り替えに対応。',
+      'feat.gdocs.title':  'Googleドキュメントに保存 <span class="badge-pro">PRO</span>',
+      'feat.gdocs.desc':   'OAuth 2.0でGoogleドキュメント・Driveに直接エクスポート — 追加設定不要。',
+      'feat.notion.title': 'Notionに保存 <span class="badge-pro">PRO</span>',
+      'feat.notion.desc':  'Integration Tokenを使ってNotionワークスペースに会話をエクスポート。',
+      'feat.i18n.title':   '英語・日本語対応UI',
+      'feat.i18n.desc':    'Chromeのロケールから自動検出 — 英語・日本語に完全対応。',
+      'why.label':         'なぜAI Chat Exporter?',
+      'why.title':         'シンプルさとプライバシーのために設計',
+      'why.local.title':   '100%ローカル処理',
+      'why.local.desc':    'チャット内容はすべてブラウザ内で処理。サーバーへの送信はありません。',
+      'why.fab.title':     'フローティングアイコン',
+      'why.fab.desc':      'ドラッグで好きな位置に移動可能。展開方向を画面端に合わせて自動調整。',
+      'why.dark.title':    'ダークモード対応',
+      'why.dark.desc':     '設定画面とUIがダーク・ライトテーマに自動対応。',
+      'why.folder.title':  'Googleドライブフォルダ指定',
+      'why.folder.desc':   'エクスポート先のGoogleドライブフォルダを選択または作成して指定できます。',
+      'why.zero.title':    '設定不要',
+      'why.zero.desc':     'インストールしてすぐ使えます — 登録・アカウント・トラッキング一切なし。',
+      'why.upd.title':     '常に最新',
+      'why.upd.desc':      '各サービスのDOM変更や新AIプラットフォームに対応した定期アップデート。',
+      'cta.title':         '今すぐAIチャットのエクスポートを始めよう',
+      'cta.sub':           'インストール無料。アカウント登録不要。8つの対応プラットフォームで即座に使えます。',
+      'cta.btn':           'Chromeに追加',
+      'footer.privacy':    'プライバシーポリシー',
+      'footer.contact':    'お問い合わせ',
+    }
+  };
+
+  function applyLang(lang) {
+    const d = DICT[lang];
+    // text nodes
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (d[key] !== undefined) el.textContent = d[key];
+    });
+    // html nodes
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (d[key] !== undefined) el.innerHTML = d[key];
+    });
+    // active button
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+    // html lang attr
+    document.documentElement.lang = lang;
+  }
+
+  function setLang(lang) {
+    localStorage.setItem('ace-lang', lang);
+    applyLang(lang);
+  }
+
+  // Init: localStorage → browser language → en
+  (function () {
+    const saved = localStorage.getItem('ace-lang');
+    const auto  = navigator.language?.startsWith('ja') ? 'ja' : 'en';
+    applyLang(saved || auto);
+  })();
+</script>
 
 </body>
 </html>
