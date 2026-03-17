@@ -135,11 +135,20 @@
     }
     .hero h1 .highlight { color: var(--accent); }
     .hero > p {
-      max-width: 600px;
+      max-width: 780px;
       margin: 0 auto 0.75rem;
       color: var(--text-dim);
-      font-size: 1rem;
+      font-size: 0.95rem;
       line-height: 1.5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 820px) {
+      .hero > p {
+        white-space: normal;
+        font-size: 0.875rem;
+      }
     }
     .btn-primary {
       display: inline-block;
@@ -336,7 +345,7 @@
   <h1 data-i18n-html="hero.h1"></h1>
   <p data-i18n="hero.sub"></p>
   <div class="hero-video-wrap">
-    <video id="hero-video" controls preload="metadata" poster="poster-en.png">
+    <video id="hero-video" controls preload="metadata" poster="poster-en.png" data-poster-en="poster-en.png" data-poster-ja="poster-ja.png">
       <source id="hero-video-src" src="ai-chat-exporter-en.mp4" type="video/mp4">
     </video>
   </div>
@@ -560,12 +569,14 @@
     document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
     // html lang attr
     document.documentElement.lang = lang;
-    // switch hero video
+    // switch hero video + poster
     const vid = document.getElementById('hero-video');
     if (vid) {
-      const newSrc = lang === 'ja' ? 'ai-chat-exporter-ja.mp4' : 'ai-chat-exporter-en.mp4';
+      const newSrc    = lang === 'ja' ? 'ai-chat-exporter-ja.mp4' : 'ai-chat-exporter-en.mp4';
+      const newPoster = lang === 'ja' ? vid.dataset.posterJa : vid.dataset.posterEn;
       if (!vid.src.endsWith(newSrc)) {
-        vid.src = newSrc;
+        vid.poster = newPoster;
+        vid.src    = newSrc;
         vid.load();
       }
     }
