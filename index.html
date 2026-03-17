@@ -260,6 +260,21 @@
     }
     footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
 
+    /* ── Hero Video ── */
+    .hero-video-wrap {
+      max-width: 800px;
+      margin: 2rem auto;
+      border: 1.5px solid var(--accent);
+      border-radius: 12px;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .lang-switcher { display: flex; }
@@ -289,6 +304,11 @@
   <span class="hero-icon">📋</span>
   <h1 data-i18n-html="hero.h1"></h1>
   <p data-i18n="hero.sub"></p>
+  <div class="hero-video-wrap">
+    <video id="hero-video" controls preload="metadata">
+      <source id="hero-video-src" src="ai-chat-exporter-en.mp4" type="video/mp4">
+    </video>
+  </div>
   <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener" data-i18n="hero.cta"></a>
   <p class="hero-sub" data-i18n="hero.sub2"></p>
 </section>
@@ -507,6 +527,15 @@
     document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
     // html lang attr
     document.documentElement.lang = lang;
+    // switch hero video
+    const vid = document.getElementById('hero-video');
+    if (vid) {
+      const newSrc = lang === 'ja' ? 'ai-chat-exporter-ja.mp4' : 'ai-chat-exporter-en.mp4';
+      if (!vid.src.endsWith(newSrc)) {
+        vid.src = newSrc;
+        vid.load();
+      }
+    }
   }
 
   function setLang(lang) {
