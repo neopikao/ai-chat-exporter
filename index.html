@@ -32,9 +32,14 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ── Header ── */
+    /* ── Header (sticky) ── */
     header {
-      background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(22, 33, 62, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       padding: 0 1.5rem;
     }
@@ -133,7 +138,7 @@
     }
     .section-label {
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 1.1rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -142,7 +147,7 @@
     }
     .section-title {
       text-align: center;
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 700;
       margin-bottom: 2.5rem;
     }
@@ -159,9 +164,14 @@
       text-align: center;
       font-weight: 600;
       font-size: 0.95rem;
-      transition: border-color 0.2s, transform 0.1s;
+      transition: all 0.3s ease;
     }
-    .service-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 4px 20px rgba(80,200,120,0.25);
+      transition: all 0.3s ease;
+    }
     .service-card .icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
 
     /* ── Features ── */
@@ -397,7 +407,7 @@
       'hero.h1':           'Export AI Chats<br><span class="highlight">in One Click</span>',
       'hero.sub':          'A Chrome Extension that extracts conversations from 8 AI chat services and exports them as Markdown — instantly.',
       'hero.cta':          'Add to Chrome',
-      'hero.sub2':         'Chrome Web Store\u00a0·\u00a0Free &amp; Pro Plans\u00a0·\u00a0No account required',
+      'hero.sub2':         'Chrome Web Store\u00a0·\u00a0Free & Pro Plans\u00a0·\u00a0No account required',
       'services.label':    'Supported Services',
       'services.title':    'Works with 8 AI Chat Platforms',
       'features.label':    'Features',
@@ -441,7 +451,7 @@
       'hero.h1':           'AIチャットを<br><span class="highlight">ワンクリックでエクスポート</span>',
       'hero.sub':          '8つのAIチャットサービスの会話をMarkdown形式で即座にエクスポートできるChrome拡張機能。',
       'hero.cta':          'Chromeに追加',
-      'hero.sub2':         'Chrome ウェブストア\u00a0·\u00a0無料版 &amp; Pro版\u00a0·\u00a0アカウント不要',
+      'hero.sub2':         'Chrome ウェブストア\u00a0·\u00a0無料版 & Pro版\u00a0·\u00a0アカウント不要',
       'services.label':    '対応サービス',
       'services.title':    '8つのAIチャットプラットフォームに対応',
       'features.label':    '機能',
