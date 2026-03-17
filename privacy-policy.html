@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – AI Chat Exporter</title>
+  <meta name="description" content="Privacy Policy for AI Chat Exporter Chrome Extension." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #1a1a2e;
+      --bg2:      #16213e;
+      --bg3:      #0f3460;
+      --accent:   #50C878;
+      --accent2:  #3aab60;
+      --text:     #e0e0e0;
+      --text-dim: #9ca3af;
+      --border:   rgba(80,200,120,0.2);
+      --radius:   12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    nav {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo span { font-size: 1.4rem; }
+    .nav-back { font-size: 0.9rem; color: var(--text-dim); }
+    .nav-back:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, var(--bg2) 0%, var(--bg) 60%);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; margin-bottom: 0.5rem; }
+    .hero .updated { font-size: 0.85rem; color: var(--text-dim); }
+
+    /* ── Lang toggle ── */
+    .lang-toggle {
+      max-width: 860px;
+      margin: 1.5rem auto 0;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+    .lang-btn {
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: inherit;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: var(--accent);
+      color: #0a0a14;
+      font-weight: 700;
+      border-color: var(--accent);
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 860px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    .policy-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section p,
+    .policy-section li {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+
+    .policy-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .policy-section ul li {
+      padding: 0.35rem 0 0.35rem 1.4rem;
+      position: relative;
+    }
+
+    .policy-section ul li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .policy-section strong {
+      color: var(--text);
+    }
+
+    .lang-section { display: none; }
+    .lang-section.visible { display: block; }
+
+    .lang-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .lang-heading {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      padding: 0.5rem 1rem;
+      background: rgba(80,200,120,0.08);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #0d0d1a;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav>
+    <div class="nav-logo"><span>📋</span> AI Chat Exporter</div>
+    <a class="nav-back" href="index.html">← Back to Home</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: 2026-03-17</p>
+</div>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="showLang('en', this)">English</button>
+  <button class="lang-btn" onclick="showLang('ja', this)">日本語</button>
+  <button class="lang-btn" onclick="showLang('both', this)">Both / 両方</button>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+  <!-- ── ENGLISH ── -->
+  <div id="section-en" class="lang-section visible">
+    <p class="lang-heading">English</p>
+
+    <div class="policy-section">
+      <h2>1. Data Collection</h2>
+      <p>The Extension does <strong>NOT</strong> collect, store, transmit, or share any personal data or user information to the developer or any unauthorized third party.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. Data Processing</h2>
+      <p>All chat content is processed entirely within your browser:</p>
+      <ul>
+        <li>Copied text is stored only in your local clipboard.</li>
+        <li>Downloaded files are saved only to your local device's download folder.</li>
+        <li>No data ever leaves your device unless you explicitly use a Pro feature (Google Docs / Notion).</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. Pro Version Features and External Services</h2>
+      <ul>
+        <li><strong>Google Docs / Drive Integration</strong> — uses OAuth 2.0 via the Chrome identity API. Your data stays in your own Google Drive only and is never accessed by the developer.</li>
+        <li><strong>Notion Integration</strong> — uses a user-provided Integration Token stored locally in <code>chrome.storage.sync</code>. This token is never transmitted to any external server other than Notion's official API.</li>
+        <li>Both features are activated only on your explicit action and are entirely optional.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. Permissions Used</h2>
+      <ul>
+        <li><strong>activeTab</strong> — to read the current tab's chat content.</li>
+        <li><strong>downloads</strong> — to save Markdown files to your local folder.</li>
+        <li><strong>storage</strong> — to save your settings locally (locale, toggle preferences, folder IDs).</li>
+        <li><strong>identity</strong> — (Pro) to authenticate with Google via OAuth 2.0.</li>
+        <li><strong>host_permissions</strong> — limited to the 8 supported AI chat services: Gemini, ChatGPT, Claude, Grok, Genspark, Microsoft Copilot, DeepSeek, and Perplexity.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. Third-Party Services</h2>
+      <p>This Extension does <strong>not</strong> use any analytics, advertising, or tracking services. The only external connections are user-initiated integrations with Google (OAuth 2.0) and Notion (official API).</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. Changes to This Policy</h2>
+      <p>Any changes to this Privacy Policy will be reflected in an updated version of this document with a revised "Last updated" date.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>7. Contact</h2>
+      <p>If you have any questions or concerns about this Privacy Policy, please contact:<br>
+      <a href="mailto:korokiri0811@gmail.com">korokiri0811@gmail.com</a></p>
+    </div>
+  </div>
+
+  <!-- ── JAPANESE ── -->
+  <div id="section-ja" class="lang-section">
+    <p class="lang-heading">日本語</p>
+
+    <div class="policy-section">
+      <h2>1. データの収集について</h2>
+      <p>本拡張機能は、ユーザーの個人情報や会話データを開発者または未承認の第三者に<strong>収集・保存・送信・共有しません</strong>。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. データの処理について</h2>
+      <p>すべてのチャットコンテンツはブラウザ内でのみ処理されます：</p>
+      <ul>
+        <li>コピーされたテキストはローカルのクリップボードにのみ保存されます。</li>
+        <li>ダウンロードされたファイルはローカルデバイスのダウンロードフォルダにのみ保存されます。</li>
+        <li>Pro機能（Googleドキュメント・Notion）を明示的に使用する場合を除き、データが端末外に送出されることはありません。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. Pro版機能と外部サービスについて</h2>
+      <ul>
+        <li><strong>Google ドキュメント / ドライブ連携</strong> — Chrome identity API を通じてOAuth 2.0で認証します。データはユーザー自身のGoogle Driveにのみ保存され、開発者がアクセスすることはありません。</li>
+        <li><strong>Notion連携</strong> — ユーザーが提供したIntegration Tokenを <code>chrome.storage.sync</code> にローカル保存します。このトークンはNotionの公式API以外の外部サーバーに送信されることはありません。</li>
+        <li>いずれの機能もユーザーの明示的な操作によってのみ有効化される任意機能です。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. 使用する権限について</h2>
+      <ul>
+        <li><strong>activeTab</strong> — 現在のタブのチャットコンテンツを読み取るため。</li>
+        <li><strong>downloads</strong> — Markdownファイルをローカルフォルダに保存するため。</li>
+        <li><strong>storage</strong> — 設定（言語、トグル設定、フォルダIDなど）をローカルに保存するため。</li>
+        <li><strong>identity</strong> — （Pro版）OAuth 2.0でGoogleに認証するため。</li>
+        <li><strong>host_permissions</strong> — 対応する8つのAIチャットサービスのみに限定：Gemini、ChatGPT、Claude、Grok、Genspark、Microsoft Copilot、DeepSeek、Perplexity。</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. 第三者サービスについて</h2>
+      <p>本拡張機能はアナリティクス・広告・トラッキングサービスを一切使用<strong>しません</strong>。外部への接続は、ユーザーが明示的に開始したGoogleとの連携（OAuth 2.0）およびNotionとの連携（公式API）のみです。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. プライバシーポリシーの変更について</h2>
+      <p>本プライバシーポリシーの変更は、「最終更新日」を更新した新しいバージョンとしてこのページに反映されます。</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>7. お問い合わせ</h2>
+      <p>本プライバシーポリシーに関するご質問・ご懸念は下記までご連絡ください：<br>
+      <a href="mailto:korokiri0811@gmail.com">korokiri0811@gmail.com</a></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener">Chrome Web Store</a>
+    <a href="mailto:korokiri0811@gmail.com">Contact</a>
+  </div>
+  <p>&copy; 2026 AI Chat Exporter. All rights reserved.</p>
+</footer>
+
+<script>
+  function showLang(lang, btn) {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const en = document.getElementById('section-en');
+    const ja = document.getElementById('section-ja');
+
+    if (lang === 'en') {
+      en.classList.add('visible'); ja.classList.remove('visible');
+    } else if (lang === 'ja') {
+      ja.classList.add('visible'); en.classList.remove('visible');
+    } else {
+      en.classList.add('visible'); ja.classList.add('visible');
+    }
+  }
+</script>
+
+</body>
+</html>

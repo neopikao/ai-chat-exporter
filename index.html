@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chat Exporter – Chrome Extension</title>
+  <meta name="description" content="Export conversations from 8 AI chat services with one click. Supports Gemini, ChatGPT, Claude, Grok, Genspark, Microsoft Copilot, DeepSeek, and Perplexity." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #1a1a2e;
+      --bg2:      #16213e;
+      --bg3:      #0f3460;
+      --accent:   #50C878;
+      --accent2:  #3aab60;
+      --text:     #e0e0e0;
+      --text-dim: #9ca3af;
+      --border:   rgba(80,200,120,0.2);
+      --radius:   12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+    nav {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo span { font-size: 1.4rem; }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+    .nav-links a { color: var(--text-dim); }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, var(--bg2) 0%, var(--bg) 60%);
+      text-align: center;
+      padding: 5rem 1.5rem 4rem;
+    }
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: var(--text-dim);
+      font-size: 1.1rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0a14;
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--accent2); text-decoration: none; transform: translateY(-2px); }
+    .hero-sub {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* ── Services ── */
+    .services {
+      padding: 4rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .service-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .service-card .icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+
+    /* ── Features ── */
+    .features {
+      background: var(--bg2);
+      padding: 4rem 1.5rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .features-inner { max-width: 900px; margin: 0 auto; }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .feature-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .feature-card .f-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+    .badge-pro {
+      display: inline-block;
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Highlights ── */
+    .highlights {
+      padding: 4rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .highlight-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+    }
+    .highlight-item .h-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .highlight-item .h-text { font-size: 0.9rem; color: var(--text-dim); }
+    .highlight-item .h-text strong { color: var(--text); display: block; margin-bottom: 0.2rem; }
+
+    /* ── CTA ── */
+    .cta {
+      background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .cta h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; margin-bottom: 1rem; }
+    .cta p { color: var(--text-dim); margin-bottom: 2rem; }
+
+    /* ── Footer ── */
+    footer {
+      background: #0d0d1a;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <nav>
+    <div class="nav-logo"><span>📋</span> AI Chat Exporter</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#services">Services</a>
+      <a href="privacy-policy.html">Privacy</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <span class="hero-icon">📋</span>
+  <h1>Export AI Chats<br><span class="highlight">in One Click</span></h1>
+  <p>A Chrome Extension that extracts conversations from 8 AI chat services and exports them as Markdown — instantly.</p>
+  <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener">
+    Add to Chrome — It's Free
+  </a>
+  <p class="hero-sub">Chrome Web Store &nbsp;·&nbsp; Manifest V3 &nbsp;·&nbsp; No account required</p>
+</section>
+
+<!-- Supported Services -->
+<section class="services" id="services">
+  <p class="section-label">Supported Services</p>
+  <h2 class="section-title">Works with 8 AI Chat Platforms</h2>
+  <div class="service-grid">
+    <div class="service-card"><span class="icon">✨</span>Gemini</div>
+    <div class="service-card"><span class="icon">🤖</span>ChatGPT</div>
+    <div class="service-card"><span class="icon">⚡</span>Claude</div>
+    <div class="service-card"><span class="icon">𝕏</span>Grok</div>
+    <div class="service-card"><span class="icon">🌟</span>Genspark</div>
+    <div class="service-card"><span class="icon">🪟</span>Microsoft Copilot</div>
+    <div class="service-card"><span class="icon">🔷</span>DeepSeek</div>
+    <div class="service-card"><span class="icon">🔍</span>Perplexity</div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Everything You Need to Save Conversations</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="f-icon">📋</span>
+        <h3>Copy as Markdown</h3>
+        <p>Copy the entire conversation to your clipboard in clean Markdown format with a single click.</p>
+      </div>
+      <div class="feature-card">
+        <span class="f-icon">⬇️</span>
+        <h3>Download as .md File</h3>
+        <p>Save the conversation as a Markdown file directly to your local downloads folder.</p>
+      </div>
+      <div class="feature-card">
+        <span class="f-icon">✂️</span>
+        <h3>Selection Copy</h3>
+        <p>Pick specific messages to copy — by free selection or per-message toggle.</p>
+      </div>
+      <div class="feature-card">
+        <span class="f-icon">📄</span>
+        <h3>Save to Google Docs <span class="badge-pro">PRO</span></h3>
+        <p>Export directly to Google Docs and Google Drive with OAuth 2.0 — no extra setup needed.</p>
+      </div>
+      <div class="feature-card">
+        <span class="f-icon">📝</span>
+        <h3>Save to Notion <span class="badge-pro">PRO</span></h3>
+        <p>Push conversations to your Notion workspace using your Integration Token.</p>
+      </div>
+      <div class="feature-card">
+        <span class="f-icon">🌐</span>
+        <h3>English &amp; Japanese UI</h3>
+        <p>Fully localized interface in both English and Japanese — auto-detected from your Chrome locale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Highlights -->
+<section class="highlights">
+  <p class="section-label">Why AI Chat Exporter?</p>
+  <h2 class="section-title">Designed for Simplicity &amp; Privacy</h2>
+  <div class="highlight-list">
+    <div class="highlight-item">
+      <span class="h-icon">🔒</span>
+      <div class="h-text"><strong>100% Local Processing</strong>All chat content is processed entirely within your browser. Nothing is sent to any server.</div>
+    </div>
+    <div class="highlight-item">
+      <span class="h-icon">🖱️</span>
+      <div class="h-text"><strong>Floating Icon</strong>Draggable floating button — reposition anywhere on screen, expands in the right direction automatically.</div>
+    </div>
+    <div class="highlight-item">
+      <span class="h-icon">🌙</span>
+      <div class="h-text"><strong>Dark Mode Support</strong>Settings page and UI automatically adapt to dark and light themes.</div>
+    </div>
+    <div class="highlight-item">
+      <span class="h-icon">📂</span>
+      <div class="h-text"><strong>Custom Google Drive Folder</strong>Choose or create a destination folder in Google Drive for exported documents.</div>
+    </div>
+    <div class="highlight-item">
+      <span class="h-icon">⚡</span>
+      <div class="h-text"><strong>Zero Configuration</strong>Install and it just works — no sign-up, no account, no tracking.</div>
+    </div>
+    <div class="highlight-item">
+      <span class="h-icon">🔄</span>
+      <div class="h-text"><strong>Always Up-to-Date</strong>Regular updates to keep up with each service's DOM changes and new AI platforms.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Start Exporting Your AI Chats Today</h2>
+  <p>Free to install. No sign-up required. Works instantly on all 8 supported platforms.</p>
+  <a class="btn-primary" href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener">
+    Add to Chrome
+  </a>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="https://chromewebstore.google.com/detail/ai-chat-exporter/loodiigkfmmieeaiililegmhjgjjlcaj" target="_blank" rel="noopener">Chrome Web Store</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="mailto:korokiri0811@gmail.com">Contact</a>
+  </div>
+  <p>&copy; 2026 AI Chat Exporter. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
