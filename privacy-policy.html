@@ -219,7 +219,7 @@
 <!-- Hero -->
 <div class="hero">
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 2026-03-17</p>
+  <p class="updated">Last updated: 2026-03-21</p>
 </div>
 
 <!-- Language Toggle (content area) -->
@@ -232,15 +232,17 @@
 <!-- Content -->
 <div class="content">
 
-  <!-- ── ENGLISH ── -->
+  <!-- ── 英語版 ── -->
   <div id="section-en" class="lang-section visible">
     <p class="lang-heading">English</p>
 
+    <!-- セクション1: データ収集（既存） -->
     <div class="policy-section">
       <h2>1. Data Collection</h2>
       <p>The Extension does <strong>NOT</strong> collect, store, transmit, or share any personal data or user information to the developer or any unauthorized third party.</p>
     </div>
 
+    <!-- セクション2: データ処理（既存） -->
     <div class="policy-section">
       <h2>2. Data Processing</h2>
       <p>All chat content is processed entirely within your browser:</p>
@@ -251,6 +253,7 @@
       </ul>
     </div>
 
+    <!-- セクション3: Pro版機能と外部サービス（既存＋Google連携の詳細を追記） -->
     <div class="policy-section">
       <h2>3. Pro Version Features and External Services</h2>
       <ul>
@@ -258,10 +261,27 @@
         <li><strong>Notion Integration</strong> — uses a user-provided Integration Token stored locally in <code>chrome.storage.sync</code>. This token is never transmitted to any external server other than Notion's official API.</li>
         <li>Both features are activated only on your explicit action and are entirely optional.</li>
       </ul>
+      <p style="margin-top:1rem;">Google Docs / Drive Integration accesses the following Google user data:</p>
+      <ul>
+        <li><strong>Google Drive</strong> — Create and write files in a designated folder only. The Extension does NOT read, modify, or delete any existing files in your Google Drive.</li>
+        <li><strong>Google Docs</strong> — Create new documents to export chat content. The Extension does NOT access any existing Google Docs.</li>
+        <li><strong>User Profile (email)</strong> — Used solely to identify the authenticated user for the OAuth session. This information is NOT stored or transmitted.</li>
+      </ul>
     </div>
 
+    <!-- セクション4: Googleユーザーデータの使用目的（新規） -->
     <div class="policy-section">
-      <h2>4. Permissions Used</h2>
+      <h2>4. Use of Google User Data</h2>
+      <p>Google user data accessed through OAuth 2.0 is used exclusively for the following purpose:</p>
+      <ul>
+        <li>To export AI chat content to the user's own Google Drive / Google Docs upon the user's explicit action.</li>
+      </ul>
+      <p>No Google user data is used for advertising, analytics, market research, AI/ML model training, or any purpose other than the core export functionality described above.</p>
+    </div>
+
+    <!-- セクション5: 使用する権限（既存） -->
+    <div class="policy-section">
+      <h2>5. Permissions Used</h2>
       <ul>
         <li><strong>activeTab</strong> — to read the current tab's chat content.</li>
         <li><strong>downloads</strong> — to save Markdown files to your local folder.</li>
@@ -271,32 +291,59 @@
       </ul>
     </div>
 
+    <!-- セクション6: 第三者サービス（既存＋Googleデータ非共有の明記を追加） -->
     <div class="policy-section">
-      <h2>5. Third-Party Services</h2>
+      <h2>6. Third-Party Services</h2>
       <p>This Extension does <strong>not</strong> use any analytics, advertising, or tracking services. The only external connections are user-initiated integrations with Google (OAuth 2.0) and Notion (official API).</p>
+      <p style="margin-top:0.75rem;">Google user data is <strong>NEVER</strong> shared with, sold to, or disclosed to any third party, including the developer, advertisers, data brokers, or any other entity. The only data transmission occurs directly between the user's browser and Google's official APIs.</p>
     </div>
 
+    <!-- セクション7: データの保存と保護（新規） -->
     <div class="policy-section">
-      <h2>6. Changes to This Policy</h2>
+      <h2>7. Data Storage and Security</h2>
+      <ul>
+        <li>OAuth 2.0 tokens are managed by the Chrome identity API and stored securely within Chrome's built-in credential storage. The Extension does NOT independently store or cache OAuth tokens.</li>
+        <li>Notion Integration Tokens are stored locally using <code>chrome.storage.sync</code>, protected by Chrome's built-in encryption.</li>
+        <li>No user data, credentials, or chat content is stored on any external server controlled by the developer.</li>
+      </ul>
+    </div>
+
+    <!-- セクション8: データの保持と削除（新規） -->
+    <div class="policy-section">
+      <h2>8. Data Retention and Deletion</h2>
+      <ul>
+        <li>The Extension retains NO user data on any external server. All data exists only on the user's local device and/or the user's own Google Drive.</li>
+        <li><strong>To revoke Google access:</strong> Visit <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">https://myaccount.google.com/permissions</a>, find "AI Chat Exporter", and click "Remove Access".</li>
+        <li><strong>To delete local data:</strong> Uninstall the Extension from Chrome. This removes all locally stored settings and tokens.</li>
+        <li><strong>To delete exported files:</strong> Manually delete files from your Google Drive or Notion workspace.</li>
+      </ul>
+    </div>
+
+    <!-- セクション9: ポリシー変更（既存） -->
+    <div class="policy-section">
+      <h2>9. Changes to This Policy</h2>
       <p>Any changes to this Privacy Policy will be reflected in an updated version of this document with a revised "Last updated" date.</p>
     </div>
 
+    <!-- セクション10: お問い合わせ（既存） -->
     <div class="policy-section">
-      <h2>7. Contact</h2>
+      <h2>10. Contact</h2>
       <p>If you have any questions or concerns about this Privacy Policy, please contact:<br>
       <a href="mailto:korokiri0811@gmail.com">korokiri0811@gmail.com</a></p>
     </div>
   </div>
 
-  <!-- ── JAPANESE ── -->
+  <!-- ── 日本語版 ── -->
   <div id="section-ja" class="lang-section">
     <p class="lang-heading">日本語</p>
 
+    <!-- セクション1: データの収集（既存） -->
     <div class="policy-section">
       <h2>1. データの収集について</h2>
       <p>本拡張機能は、ユーザーの個人情報や会話データを開発者または未承認の第三者に<strong>収集・保存・送信・共有しません</strong>。</p>
     </div>
 
+    <!-- セクション2: データの処理（既存） -->
     <div class="policy-section">
       <h2>2. データの処理について</h2>
       <p>すべてのチャットコンテンツはブラウザ内でのみ処理されます：</p>
@@ -307,6 +354,7 @@
       </ul>
     </div>
 
+    <!-- セクション3: Pro版機能と外部サービス（既存＋Google連携の詳細を追記） -->
     <div class="policy-section">
       <h2>3. Pro版機能と外部サービスについて</h2>
       <ul>
@@ -314,10 +362,27 @@
         <li><strong>Notion連携</strong> — ユーザーが提供したIntegration Tokenを <code>chrome.storage.sync</code> にローカル保存します。このトークンはNotionの公式API以外の外部サーバーに送信されることはありません。</li>
         <li>いずれの機能もユーザーの明示的な操作によってのみ有効化される任意機能です。</li>
       </ul>
+      <p style="margin-top:1rem;">Google ドキュメント / ドライブ連携では、以下のGoogleユーザーデータにアクセスします：</p>
+      <ul>
+        <li><strong>Google Drive</strong> — 指定フォルダへのファイル作成・書き込みのみ。既存のファイルの読み取り・変更・削除は一切行いません。</li>
+        <li><strong>Google ドキュメント</strong> — チャットコンテンツをエクスポートするための新規ドキュメント作成のみ。既存のドキュメントにはアクセスしません。</li>
+        <li><strong>ユーザープロフィール（メールアドレス）</strong> — OAuth認証セッションのユーザー識別にのみ使用します。この情報は保存・送信されません。</li>
+      </ul>
     </div>
 
+    <!-- セクション4: Googleユーザーデータの使用目的（新規） -->
     <div class="policy-section">
-      <h2>4. 使用する権限について</h2>
+      <h2>4. Googleユーザーデータの使用目的</h2>
+      <p>OAuth 2.0を通じてアクセスするGoogleユーザーデータは、以下の目的にのみ使用されます：</p>
+      <ul>
+        <li>ユーザーの明示的な操作に基づき、AIチャットコンテンツをユーザー自身のGoogle Drive / Googleドキュメントにエクスポートすること。</li>
+      </ul>
+      <p>Googleユーザーデータは、広告、分析、市場調査、AI/MLモデルのトレーニング、または上記のエクスポート機能以外のいかなる目的にも使用されません。</p>
+    </div>
+
+    <!-- セクション5: 使用する権限（既存） -->
+    <div class="policy-section">
+      <h2>5. 使用する権限について</h2>
       <ul>
         <li><strong>activeTab</strong> — 現在のタブのチャットコンテンツを読み取るため。</li>
         <li><strong>downloads</strong> — Markdownファイルをローカルフォルダに保存するため。</li>
@@ -327,18 +392,43 @@
       </ul>
     </div>
 
+    <!-- セクション6: 第三者サービス（既存＋Googleデータ非共有の明記を追加） -->
     <div class="policy-section">
-      <h2>5. 第三者サービスについて</h2>
+      <h2>6. 第三者サービスについて</h2>
       <p>本拡張機能はアナリティクス・広告・トラッキングサービスを一切使用<strong>しません</strong>。外部への接続は、ユーザーが明示的に開始したGoogleとの連携（OAuth 2.0）およびNotionとの連携（公式API）のみです。</p>
+      <p style="margin-top:0.75rem;">Googleユーザーデータは、開発者、広告主、データブローカー、その他いかなる第三者とも<strong>共有・販売・開示されることはありません</strong>。データの送受信は、ユーザーのブラウザとGoogleの公式APIの間でのみ直接行われます。</p>
     </div>
 
+    <!-- セクション7: データの保存と保護（新規） -->
     <div class="policy-section">
-      <h2>6. プライバシーポリシーの変更について</h2>
+      <h2>7. データの保存と保護について</h2>
+      <ul>
+        <li>OAuth 2.0トークンはChrome identity APIにより管理され、Chromeの組み込み認証ストレージに安全に保存されます。本拡張機能が独自にOAuthトークンを保存・キャッシュすることはありません。</li>
+        <li>Notion連携のIntegration Tokenは <code>chrome.storage.sync</code> を使用してローカルに保存され、Chromeの組み込み暗号化により保護されます。</li>
+        <li>ユーザーデータ、認証情報、チャットコンテンツが開発者の管理する外部サーバーに保存されることはありません。</li>
+      </ul>
+    </div>
+
+    <!-- セクション8: データの保持と削除（新規） -->
+    <div class="policy-section">
+      <h2>8. データの保持と削除について</h2>
+      <ul>
+        <li>本拡張機能は、いかなるユーザーデータも外部サーバーに保持しません。すべてのデータはユーザーのローカルデバイスおよび/またはユーザー自身のGoogle Driveにのみ存在します。</li>
+        <li><strong>Googleへのアクセスを取り消すには：</strong><a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">https://myaccount.google.com/permissions</a> にアクセスし、「AI Chat Exporter」を見つけて「アクセス権を削除」をクリックしてください。</li>
+        <li><strong>ローカルデータを削除するには：</strong>ChromeからExtensionをアンインストールしてください。これにより、ローカルに保存されたすべての設定とトークンが削除されます。</li>
+        <li><strong>エクスポート済みファイルを削除するには：</strong>Google DriveまたはNotionワークスペースからファイルを手動で削除してください。</li>
+      </ul>
+    </div>
+
+    <!-- セクション9: ポリシー変更（既存） -->
+    <div class="policy-section">
+      <h2>9. プライバシーポリシーの変更について</h2>
       <p>本プライバシーポリシーの変更は、「最終更新日」を更新した新しいバージョンとしてこのページに反映されます。</p>
     </div>
 
+    <!-- セクション10: お問い合わせ（既存） -->
     <div class="policy-section">
-      <h2>7. お問い合わせ</h2>
+      <h2>10. お問い合わせ</h2>
       <p>本プライバシーポリシーに関するご質問・ご懸念は下記までご連絡ください：<br>
       <a href="mailto:korokiri0811@gmail.com">korokiri0811@gmail.com</a></p>
     </div>
